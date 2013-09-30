@@ -1,5 +1,13 @@
 <resources>
 
-    <string name="app_name">MyHealthMeasurementDevice</string>
+    <string name="app_name">Measurement Device</string>
+    <string name="measurement_button_description">Press the button below to start the test</string>
+    <string name="measurement_button_text">Start</string>
+    <string name="choose_measurement_option">Choose a measurement type</string>
+    <string-array name="measurement_options">
+        <item>Blood Pressure</item>
+        <item>Pulse</item>
+        <item>ECG</item>
+    </string-array>
 
 </resources>
