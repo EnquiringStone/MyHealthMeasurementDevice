@@ -40,21 +40,7 @@ public class MainActivity extends Activity {
 	{
 		protected String doInBackground(String... measurementId)
 		{
-			Measurement measurement=null;
-			switch(Integer.parseInt(measurementId[0]))
-			{
-				case BLOOD_PRESSURE:
-				measurement=new BloodPressure();
-				break;
-					
-				case ECG:
-				measurement=new ECGWaves();
-				break;
-				
-				case PULSE:
-				measurement=new Pulse();
-				break;
-			}
+			Measurement measurement= this.getMeasurementType(Integer.parseInt(measurementId[0]));
 			while(MEASURING) 
 			{
 				String jsonString = JSONObject.quote(measurement.getMeasurementData());
@@ -69,6 +55,25 @@ public class MainActivity extends Activity {
 				}
 			}
 			return null;
+		}
+		
+		private Measurement getMeasurementType(int type) {
+			Measurement measurement = null;
+			switch(type)
+			{
+				case BLOOD_PRESSURE:
+				measurement = new BloodPressure();
+				break;
+					
+				case ECG:
+				measurement = new ECGWaves();
+				break;
+				
+				case PULSE:
+				measurement = new Pulse();
+				break;
+			}
+			return measurement;
 		}
 	}
 	
