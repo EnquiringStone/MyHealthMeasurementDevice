@@ -9,13 +9,16 @@ import java.util.Random;
  * Time: 13:04
  * To change this template use File | Settings | File Templates.
  */
-abstract class Measurement {
+public abstract class Measurement {
 
-	public int getRandomValue(int min, int max) {
+	protected int getRandomValue(int min, int max)
+	{
 		Random random = new Random();
 		long range = (long)max - (long)min + 1;
 		long fraction = (long)(range * random.nextDouble());
 		return (int)(fraction + min);
 	}
+	
+	public abstract String getMeasurementData();
 
 }

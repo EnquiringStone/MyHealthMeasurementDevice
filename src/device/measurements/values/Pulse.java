@@ -20,4 +20,13 @@ public class Pulse extends Measurement{
 	public static int getPulseHigh() {
 		return pulseHigh;
 	}
+	
+	public int getRandomPulse() {
+		return getRandomValue(pulseLow, pulseHigh);
+	}
+	
+	public String getMeasurementData()
+	{
+		return String.valueOf(getRandomPulse());
+	}
 }

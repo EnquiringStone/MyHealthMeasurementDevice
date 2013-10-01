@@ -25,4 +25,9 @@ public class ECGWaves extends Measurement{
 		currentMeasurement ++;
 		return getRandomValue(lowMin, lowMax);
 	}
+	
+	public String getMeasurementData()
+	{
+		return String.valueOf(getCurrentValue());
+	}
 }
