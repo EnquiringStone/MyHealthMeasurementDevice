@@ -1,15 +1,14 @@
 package device.measurements.values;
 
-import android.util.Log;
+import java.util.ArrayList;
+import org.json.JSONArray;
 
 public class BloodPressure extends Measurement{
 
 	private static final int diastolicPressureMin = 50;
 	private static final int diastolicPressureMax = 90;
-
 	private static final int multiplierSystolicPressureMin = 2;
 	private static final int multiplierSystolicPressureMax = 5;
-
 
 	public static int getDiastolicPressureMin() {
 		return diastolicPressureMin;
@@ -41,6 +40,10 @@ public class BloodPressure extends Measurement{
 	public String getMeasurementData()
 	{
 		int diastolic = getDiastolicPressure();
-		return diastolic+"/"+getSystolicPressure(diastolic);
+		int systolic = getSystolicPressure(diastolic);
+		ArrayList<Integer> array=new ArrayList<Integer>();
+		array.add(diastolic);
+		array.add(systolic);
+		return new JSONArray(array).toString();
 	}
 }

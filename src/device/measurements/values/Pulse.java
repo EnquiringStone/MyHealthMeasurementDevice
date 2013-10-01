@@ -1,5 +1,8 @@
 package device.measurements.values;
 
+import org.json.JSONObject;
+
+
 /**
  * Created with IntelliJ IDEA.
  * User: EnquiringStone
@@ -27,6 +30,6 @@ public class Pulse extends Measurement{
 	
 	public String getMeasurementData()
 	{
-		return String.valueOf(getRandomPulse());
+		return JSONObject.quote(String.valueOf(getRandomPulse()));
 	}
 }
