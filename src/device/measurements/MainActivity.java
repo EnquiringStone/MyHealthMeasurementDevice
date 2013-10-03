@@ -1,5 +1,7 @@
 package device.measurements;
 
+import com.example.myhealthapp.conn.BluetoothHandler;
+import com.example.myhealthapp.conn.BluetoothSender;
 import com.example.myhealthmeasurementdevice.R;
 
 import device.measurements.values.*;
@@ -17,12 +19,16 @@ public class MainActivity extends Activity {
 	public static final int BLOOD_PRESSURE=0;
 	public static final int PULSE=1;
 	public static final int ECG=2;
+	BluetoothHandler handler;
+	MainActivity self;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Spinner spinner = (Spinner) findViewById(R.id.choose_measurements);
+		
+		self=this;
 		
 		ArrayAdapter<CharSequence> adpt = ArrayAdapter.createFromResource(this, R.array.measurement_options, android.R.layout.simple_list_item_1);
 		adpt.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -35,6 +41,7 @@ public class MainActivity extends Activity {
 		{
 			Measurement measurement= this.getMeasurementType(Integer.parseInt(measurementId[0]));
 			String jsonString = measurement.getMeasurementData();
+			handler.setData(jsonString);
 			Log.d("pulsetest", jsonString);
 			return null;
 			
@@ -65,5 +72,11 @@ public class MainActivity extends Activity {
 		Spinner spinner = (Spinner) findViewById(R.id.choose_measurements);
 		String selectedMeasurementId = Long.valueOf(spinner.getSelectedItemId()).toString();
 		new MeasureTask().execute(selectedMeasurementId);
+	}
+	
+	public void connect(View view)
+	{
+		handler = new BluetoothSender(self);
+		handler.execute();
 	}
 }
