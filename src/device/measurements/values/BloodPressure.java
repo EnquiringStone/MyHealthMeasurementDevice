@@ -2,6 +2,7 @@ package device.measurements.values;
 
 import java.util.ArrayList;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class BloodPressure extends Measurement{
 
@@ -39,11 +40,20 @@ public class BloodPressure extends Measurement{
 	
 	public String getMeasurementData()
 	{
+		String returnString="";
 		int diastolic = getDiastolicPressure();
 		int systolic = getSystolicPressure(diastolic);
 		ArrayList<Integer> array=new ArrayList<Integer>();
 		array.add(diastolic);
 		array.add(systolic);
-		return new JSONArray(array).toString();
+		JSONArray jsonArr=new JSONArray(array);
+		try {
+			returnString=new JSONObject().put("BloodPressure", jsonArr).toString();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return returnString;
 	}
 }

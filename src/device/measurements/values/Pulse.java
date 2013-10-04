@@ -30,6 +30,14 @@ public class Pulse extends Measurement{
 	
 	public String getMeasurementData()
 	{
-		return JSONObject.quote(String.valueOf(getRandomPulse()));
+		String returnString="";
+		try{
+			returnString=new JSONObject().put("Pulse", getRandomPulse()).toString();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return returnString; 
 	}
 }

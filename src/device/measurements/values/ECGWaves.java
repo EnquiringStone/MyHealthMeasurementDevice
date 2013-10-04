@@ -3,6 +3,7 @@ package device.measurements.values;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ECGWaves extends Measurement{
 
@@ -32,12 +33,20 @@ public class ECGWaves extends Measurement{
 	
 	public String getMeasurementData()
 	{
+		String returnString="";
 		ArrayList<Integer> values = new ArrayList<Integer>();
 		for(int i=0;i<300;i++)
 		{
 			values.add(getCurrentValue());
 		}
 		JSONArray array = new JSONArray(values);
-		return array.toString();
+		try {
+			returnString = new JSONObject().put("ECG", array).toString();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return returnString;
 	}
 }

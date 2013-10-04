@@ -41,10 +41,9 @@ public class MainActivity extends Activity {
 		{
 			Measurement measurement= this.getMeasurementType(Integer.parseInt(measurementId[0]));
 			String jsonString = measurement.getMeasurementData();
-			handler.setData(jsonString);
 			Log.d("pulsetest", jsonString);
+			handler.setData(jsonString);
 			return null;
-			
 		}
 		
 		private Measurement getMeasurementType(int type) {
